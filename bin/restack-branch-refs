@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if command -v readlink >/dev/null 2>&1; then
+  SCRIPT_PATH="$(readlink -f "$0")"
+else
+  SCRIPT_PATH="$0"
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+exec python3 "$SCRIPT_DIR/../git/restack_branch_refs.py" "$@"
