@@ -14,3 +14,10 @@ A collection of scripts I wrote for various tasks
   - Show the rewritten series with `git range-diff`: `restack-branch-refs --base main --tip fork --range-diff`
   - Assumes a linear stack on the old tip branch first-parent chain and that `<tip>@{1}` still points to the pre-rebase tip.
 
+### Shell helpers
+
+- `bin/alarm`: Sleep for a short duration, then ring the terminal bell.
+  - Install: `install -m 755 bin/alarm ~/.local/bin/alarm`
+  - Usage: `alarm <number>[s|m|h|d]`
+  - Examples: `alarm 30s`, `alarm 10m`, `alarm 2h`, `alarm 1d`
+  - Omitting the suffix defaults to minutes: `alarm 5` waits 5 minutes.

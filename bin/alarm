@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+local input="${1:-10m}"
+local n unit secs
+
+if [[ "$input" =~ '^([0-9]+)([smhd]?)$' ]]; then
+    n="${match[1]}"
+    unit="${match[2]}"
+
+    case "${unit:-m}" in
+        s) secs=$n ;;
+        m) secs=$((n * 60)) ;;
+        h) secs=$((n * 3600)) ;;
+        d) secs=$((n * 86400)) ;;
+        *)
+            printf 'usage: alarm <number>[s|m|h|d]\n' >&2
+            exit 1
+            ;;
+    esac
+
+    sleep "$secs" && printf '\a'
+else
+    printf 'usage: alarm <number>[s|m|h|d]\n' >&2
+    exit 1
+fi
